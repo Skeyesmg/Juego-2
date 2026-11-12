@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Quién sabe más de la cueca?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7fc;--card:#fff;--ink:#14213d;--mut:#586178;--line:#d6dded;--blue:#0039a6;--red:#d52b1e;--ok:#17703d;--okbg:#e1f4e8;--bad:#a8231b;--badbg:#fde7e4;--soft:#e8eefb;--btn:#0039a6;--btnink:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#172038;--ink:#eef1f8;--mut:#a5afc6;--line:#2b3757;--blue:#8aaaff;--red:#ff7266;--ok:#6ad696;--okbg:#12311f;--bad:#ff938a;--badbg:#3a1b1b;--soft:#1e2a48;--btn:#8aaaff;--btnink:#0e1424;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#172038;--ink:#eef1f8;--mut:#a5afc6;--line:#2b3757;--blue:#8aaaff;--red:#ff7266;--ok:#6ad696;--okbg:#12311f;--bad:#ff938a;--badbg:#3a1b1b;--soft:#1e2a48;--btn:#8aaaff;--btnink:#0e1424;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+[hidden]{display:none!important}
+.band{height:10px;background:linear-gradient(90deg,var(--blue) 0 34%,#fff 34% 67%,var(--red) 67%)}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.12;margin:0 0 12px}
+h1{font-size:clamp(2.1rem,8vw,3.4rem);font-weight:900;letter-spacing:-.01em}
+h2{font-size:1.5rem;font-weight:700}
+p{margin:0 0 14px}
+.mut{color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}
+label{display:block;font-weight:600;margin-bottom:6px}
+input{width:100%;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+button{font:inherit;color:inherit;cursor:pointer}
+.go{background:var(--btn);color:var(--btnink);border:0;border-radius:12px;padding:13px 22px;font-weight:700;margin-top:14px}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+ul.rules{padding-left:20px;margin:16px 0 0}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.95rem;color:var(--mut)}
+.bar{height:8px;background:var(--soft);border-radius:8px;overflow:hidden;margin:8px 0 0}
+.bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
+#tb{background:var(--red);transition:none}
+.cat{display:inline-block;background:var(--soft);color:var(--blue);font-weight:700;font-size:.85rem;padding:3px 10px;border-radius:99px;margin:16px 0 8px}
+.q{font-family:Fraunces,Georgia,serif;font-size:1.45rem;font-weight:700;line-height:1.25;margin:0 0 16px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;min-height:52px;padding:11px 14px;background:var(--card);border:2px solid var(--line);border-radius:12px}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--blue);display:grid;place-items:center;font-size:.9rem}
+.opt:not(:disabled):hover{border-color:var(--blue)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.fb{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--soft)}
+.fb strong{display:block;margin-bottom:4px}
+.big{font-family:Fraunces,Georgia,serif;font-size:4rem;font-weight:900;line-height:1;color:var(--blue);margin:6px 0}
+ol.rk{list-style:none;margin:0;padding:0}
+.rk li{display:grid;grid-template-columns:2.2rem 1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.rk li:first-child{border-top:0}
+.rk .n{font-weight:800;color:var(--red)}
+.rk .me{background:var(--soft);border-radius:8px;padding-left:8px;padding-right:8px;margin:0 -8px}
+.rk .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .sc{font-weight:800;font-variant-numeric:tabular-nums}
+.st{font-size:.9rem;font-weight:600;margin:0 0 12px}
+.src{display:block;margin-top:8px;color:var(--mut);font-size:.85rem}
+a{color:var(--blue)}
+summary{cursor:pointer;font-weight:700}
+.fl{padding-left:20px;margin:12px 0 0;font-size:.92rem}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<main class="wrap">
+
+<section id="start">
+  <h1>¿Quién sabe más de la cueca?</h1>
+  <p class="mut">20 preguntas sobre el baile nacional de Chile: su origen, cómo ha cambiado, la ropa, los pasos y dónde se baila. Los datos se verificaron en fuentes como Memoria Chilena (Biblioteca Nacional). Responde rápido para sumar más puntos y sube en el ranking.</p>
+  <div class="card">
+    <label for="nick">Tu apodo para el ranking</label>
+    <input id="nick" maxlength="20" placeholder="Ej: La Pancha" autocomplete="nickname">
+    <button class="go" id="go">Empezar a jugar</button>
+    <ul class="rules mut">
+      <li>4 alternativas y 20 segundos por pregunta.</li>
+      <li>Cada acierto da 100 puntos, más hasta 100 extra según tu rapidez.</li>
+      <li>Tras cada respuesta verás una explicación y la fuente del dato.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="game" hidden>
+  <div class="top"><span id="gp"></span><span id="gs"></span></div>
+  <div class="bar"><i id="pb"></i></div>
+  <div class="bar"><i id="tb"></i></div>
+  <span class="cat" id="gc"></span>
+  <p class="q" id="gq"></p>
+  <div class="opts" id="go2"></div>
+  <div class="fb" id="fb" hidden><strong id="ft"></strong><span id="fx"></span><small class="src" id="fs"></small><div><button class="go" id="nx">Siguiente</button></div></div>
+</section>
+
+<section id="end" hidden>
+  <h2>¡Terminaste!</h2>
+  <div class="card">
+    <div class="big" id="es"></div>
+    <p><strong id="et"></strong><br><span class="mut" id="ec"></span></p>
+    <p class="mut" id="em" role="status"></p>
+    <button class="go" id="again">Jugar otra vez</button>
+  </div>
+</section>
+
+<section class="card" id="rank">
+  <h2>Ranking</h2>
+  <p class="mut" id="rn">Cargando ranking…</p>
+  <p class="st" id="rs" role="status"></p>
+  <ol class="rk" id="rl"></ol>
+</section>
+
+<details class="card" id="fuentes">
+  <summary>Fuentes consultadas</summary>
+  <ul class="fl">
+    <li><a href="https://www.memoriachilena.gob.cl/602/w3-article-3510.html" target="_blank" rel="noopener">Memoria Chilena: La cueca</a> y su <a href="https://www.memoriachilena.gob.cl/602/w3-article-93130.html" target="_blank" rel="noopener">forma coreográfica y musical</a></li>
+    <li><a href="https://www.memoriachilena.gob.cl/602/w3-article-93128.html" target="_blank" rel="noopener">Memoria Chilena: Cueca brava</a>, <a href="https://www.memoriachilena.gob.cl/602/w3-article-794.html" target="_blank" rel="noopener">Roberto Parra</a>, <a href="https://www.memoriachilena.gob.cl/602/w3-article-3562.html" target="_blank" rel="noopener">Los Cuatro Huasos y Quincheros</a>, <a href="https://www.memoriachilena.gob.cl/602/w3-article-3596.html" target="_blank" rel="noopener">Margot Loyola</a></li>
+    <li><a href="https://www.curriculumnacional.cl/614/articles-23908_recurso_pdf.pdf" target="_blank" rel="noopener">Mineduc: vestimenta tradicional</a> y <a href="https://www.curriculumnacional.cl/614/articles-27818_recurso_pdf.pdf" target="_blank" rel="noopener">pasos y pañuelo</a></li>
+    <li><a href="https://www.cnnchile.com/cultura/sting-cancion-detenidos-desaparecidos-cueca-sola-concierto-chile-dictadura/" target="_blank" rel="noopener">CNN Chile (EFE): cueca sola y Sting</a></li>
+    <li><a href="https://www.biobiochile.cl/noticias/artes-y-cultura/patrimonio/2021/09/17/cuatro-tipos-de-cueca-que-tal-vez-no-conocias.shtml" target="_blank" rel="noopener">BioBioChile: tipos de cueca</a> y <a href="https://www.biobiochile.cl/noticias/sociedad/curiosidades/2019/09/19/amp/5-terribles-errores-en-el-actual-traje-de-huasa-china-que-poco-chilenos-saben.shtml" target="_blank" rel="noopener">traje de huasa</a></li>
+    <li><a href="https://ddhh.bdigital.uncu.edu.ar/objetos_digitales/4652/lacueca-unfenomenolatinoamericano.pdf" target="_blank" rel="noopener">Universidad Nacional de Cuyo: la cueca</a></li>
+    <li><a href="https://www.britannica.com/art/Latin-American-dance/Dances-of-national-identity-1800-1940" target="_blank" rel="noopener">Britannica: danzas de identidad nacional</a> y <a href="https://en.wikipedia.org/wiki/Cueca" target="_blank" rel="noopener">Wikipedia: Cueca</a></li>
+  </ul>
+</details>
+</main>
+<script>
+const Q=[
+["Evolución","¿En qué año fue declarada la cueca baile nacional de Chile?",["1818","1910","1979","1990"],2,"El decreto N° 23, publicado el 18 de septiembre de 1979, la declaró baile nacional. Memoria Chilena ubica su llegada a Chile en 1824, así que ya llevaba más de 150 años bailándose.","Memoria Chilena"],
+["Origen","¿Con qué baile se relaciona el origen de la cueca, según Memoria Chilena?",["La zamacueca","El vals vienés","La polka","El minué francés"],0,"Memoria Chilena señala consenso en su relación con la zamacueca y sus antecedentes arábigo-andaluces. Entre las teorías discutidas también aparecen raíces africanas y mapuches.","Memoria Chilena"],
+["Origen","Hacia 1860, ¿con qué nombre se conocía la cueca en el Perú?",["La chilena","La zamba","El pericón","El cachimbo"],0,"En Perú la cueca se conocía como “chilena”, por su parecido con el baile de Chile. En 1879 el escritor Abelardo Gamarra rebautizó ese baile como marinera.","Memoria Chilena; Wikipedia (Cueca)"],
+["Baile","¿Cuántos “pies” (bailes) tiene una cueca completa?",["Uno","Dos","Tres","Cinco"],2,"Una cueca completa tiene tres pies. Parte cuando el hombre invita a la dama y ambos pasean del brazo en semicírculos; al empezar el canto vienen las vueltas y los desplazamientos de avance y retroceso.","Memoria Chilena"],
+["Baile","¿Qué paso consiste en deslizar o arrastrar los pies por el suelo y lo baila la mujer en una parte del baile?",["Escobillado","Zapateo","Remate","Media luna"],0,"Según Memoria Chilena, en uno de los desplazamientos la mujer baila con paso escobillado y el hombre zapatea. El zapateo son golpes de los pies contra el suelo, y hacia el final ambos zapatean.","Memoria Chilena; Mineduc (Currículum Nacional)"],
+["Baile","En el baile, ¿qué figura suele dibujar la mujer con el pañuelo?",["Un ocho","Una cruz","Una estrella","Un triángulo"],0,"La dama hace un ocho con el pañuelo y el varón lo mueve como si fuera un lazo. Memoria Chilena describe la cueca como baile de pareja mixta, independiente y con pañuelo.","Mineduc (Currículum Nacional); Memoria Chilena"],
+["Dónde se ve","¿Cómo se llamaban los locales populares del siglo XIX donde se cantaba y bailaba cueca?",["Chinganas","Cafés literarios","Teatros de ópera","Clubes de golf"],0,"Las chinganas eran locales populares de música y baile. En Santiago proliferaban en La Chimba, y una de las más famosas fue “El Parral”, de Teresa Plaza.","Memoria Chilena"],
+["Dónde se ve","En el Norte Grande, ¿cómo suele sonar la cueca, según Memoria Chilena?",["Instrumental, sin canto, con sikus y bandas de carnaval","Cantada por coros de mujeres, a capela","Solo con arpa y piano de salón","Con orquesta sinfónica y coro"],0,"En el Norte Grande prevalece la música sin texto, con sikus o zampoñas y bandas de carnaval donde destacan la trompeta, la tuba, el bombo y la caja.","Memoria Chilena"],
+["Dónde se ve","¿En qué zona de Chile el canto de la cueca suele ser masculino, con acordeón, guitarra y bombo?",["Chiloé","Norte Grande","Zona central","Norte Chico"],0,"En Chiloé la voz sobresale de los instrumentos, entre los que destacan el acordeón, la guitarra y el bombo. Los pasos son más cortos y el zapateo es redoblado. Desde el Norte Chico al centro-sur suele cantar una mujer con guitarra.","Memoria Chilena"],
+["Evolución","Según Memoria Chilena, ¿dónde nace la cueca brava?",["En la marginalidad de la ciudad","En las haciendas del valle central","En los salones de la aristocracia","En las minas del norte"],0,"Nace de la marginalidad citadina; el nombre “brava” se introdujo en los años sesenta para diferenciarla de la cueca chora de Roberto Parra. También se la llama urbana.","Memoria Chilena; BioBioChile"],
+["Evolución","¿Qué conjunto, fundado por Nano Núñez en 1967, fue pionero en grabar la cueca brava?",["Los Chileneros","Los Jaivas","Quilapayún","Inti-Illimani"],0,"Los Chileneros se formaron con Nano Núñez, Luis Araneda “El Baucha” y Raúl Lizama “El Perico”, y grabaron “La cueca centrina” en 1967. Décadas después, Los Tres la acercaron a nuevas generaciones con su MTV Unplugged.","BioBioChile; Memoria Chilena; Radio U. de Chile"],
+["Evolución","¿Quién cultivó y bautizó la “cueca chora” y es autor de las décimas de “La Negra Ester”?",["Roberto Parra","Víctor Jara","Nicanor Parra","Los Huasos Quincheros"],0,"Roberto Parra (1921–1995), hermano de Violeta y Nicanor, desarrolló la cueca chora, un folclor de los bajos fondos urbanos. Nicanor bautizó su estilo como “jazz guachaca”.","Memoria Chilena"],
+["Evolución","¿Qué es la “cueca sola”?",["Un baile sin música","Una cueca que solo bailan los niños","Una cueca nortina sin canto","Cueca que bailan mujeres sin pareja, con fotos de sus familiares detenidos desaparecidos"],3,"Se mostró por primera vez el 8 de marzo de 1978 en el Teatro Caupolicán: mujeres de la Agrupación de Familiares de Detenidos Desaparecidos bailaron solas, con la foto de su ser querido al cuello. Sting las homenajeó en 1987 con “They Dance Alone”.","CNN Chile (EFE); El Mostrador; Wikipedia"],
+["Evolución","¿Qué conjunto, fundado en 1937 y heredero de Los Cuatro Huasos, popularizó la música típica con el huaso como figura?",["Los Huasos Quincheros","Quilapayún","Inti-Illimani","Los Jaivas"],0,"Memoria Chilena los presenta, junto a Los Cuatro Huasos, como los dos grupos emblemáticos de la música tradicional con la figura del huaso. Compositores como Nicanor Molinare y Clara Solovera tuvieron en ellos a sus principales intérpretes.","Memoria Chilena"],
+["Evolución","¿Qué folclorista nacida en Linares en 1918 investigó la cueca y escribió con Osvaldo Cádiz “La cueca: danza de la vida y de la muerte”?",["Margot Loyola","Gabriela Mistral","Mon Laferte","Isabel Parra"],0,"Margot Loyola (1918–2015) dedicó su vida a investigar y difundir el folclor chileno y ganó el Premio Nacional de Artes Musicales. Su libro con Osvaldo Cádiz sobre la cueca se publicó en 2010.","Memoria Chilena; Universidad de Chile; Wikipedia"],
+["Ropa","¿Qué prendas forman el traje de huaso para bailar cueca?",["Chupalla o sombrero de paño, manta o chamanto, faja y botas con espuelas","Poncho de alpaca, gorro con orejeras y ojotas","Frac, sombrero de copa y bastón","Overol de trabajo y casco"],0,"El traje incluye sombrero de paño o chupalla, chaqueta y pantalón de huaso, manta o chamanto, cinturón o faja, y zapatos o botas corraleras con espuelas. La manta, de lana o hilo, puede tener diseños como racimos de uvas, herraduras o copihues.","Mineduc (Currículum Nacional); bases de campeonatos de cueca"],
+["Ropa","¿Cómo es el traje típico de huasa o china?",["Vestido floreado con falso que da volumen, zapatos negros y pelo recogido","Pantalón de montar y poncho","Vestido negro largo sin estampados","Traje de dos piezas de cuero"],0,"Suele ser un vestido floreado con un falso (falda interior), a veces con un pequeño delantal, zapatos negros y un peinado recogido. Especialistas indican que la huasa tradicional nunca usó el vestido sobre la rodilla, como se ve hoy en algunos casos.","BioBioChile"],
+["Ropa","¿Para qué sirve el tacón alto del zapato de huaso?",["Para que la rodaja de las espuelas no toque el suelo","Para verse más alto","Para marcar mejor el escobillado","Por una tradición religiosa"],0,"El zapato de huaso, de cuero o cabritilla y con punta, tiene tacón alto para que la rodaja de las espuelas no roce el suelo. El atuendo de gala del huaso se usa en rodeos y donde se baila cueca.","Mineduc (Currículum Nacional)"],
+["Dónde se ve","¿En qué región de Argentina apareció primero la cueca, ya documentada hacia 1840?",["Cuyo (Mendoza, San Juan y San Luis)","Patagonia","Litoral","Tierra del Fuego"],0,"Llegó desde Chile por Cuyo. Según la Universidad Nacional de Cuyo, el territorio natural de la cueca cuyana abarca San Juan, Mendoza, San Luis, el sur de La Rioja y el sureste de Córdoba, con notable influencia chilena.","Wikipedia (Cueca); Universidad Nacional de Cuyo"],
+["Dónde se ve","¿Cómo llegó la cueca a la costa de Guerrero y Oaxaca, en México, donde se llama “chilena”?",["Con marineros y viajeros chilenos en el siglo XIX","Con inmigrantes alemanes","Con misioneros jesuitas del siglo XVII","Con turistas en los años ochenta"],0,"Marinos y viajeros chilenos la llevaron a la costa mexicana en el siglo XIX, y allí se mezcló con tradiciones locales hasta formar la chilena de la Costa Chica.","Britannica; Wikipedia (Chilena)"]
+];
+const $=s=>document.querySelector(s),T=20,LS="cueca-rank";
+let db=null,uid=null,nick="",qs=[],i=0,score=0,right=0,t0=0,tm=0,locked=false,lt=0,shared=false;
+const show=id=>{["start","game","end"].forEach(k=>$("#"+k).hidden=k!==id);$("#rank").hidden=id==="game"};
+const shuf=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a};
+const local=()=>{try{return JSON.parse(localStorage.getItem(LS)||"[]")}catch(e){return[]}};
+const saveLocal=r=>{try{const l=local().concat(r).sort((a,b)=>b.score-a.score).slice(0,10);localStorage.setItem(LS,JSON.stringify(l))}catch(e){}};
+
+function renderRank(rows){
+  const ol=$("#rl");ol.textContent="";
+  $("#rn").textContent=rows.length?(shared?"Los mejores puntajes de todos los jugadores.":"Ranking solo de este dispositivo."):"Aún no hay puntajes. ¡Sé el primero!";
+  rows.forEach((r,k)=>{
+    const li=document.createElement("li");if(shared&&r.id&&r.id===uid)li.className="me";
+    [["n",(k+1)+"."],["nm",r.nick||"Anónimo"],["mut",r.right+"/20"],["sc",r.score+" pts"]].forEach(([c,t])=>{const s=document.createElement("span");s.className=c;s.textContent=t;li.appendChild(s)});
+    ol.appendChild(li);
+  });
+}
+renderRank(local());
+const offline=()=>{$("#rs").textContent="○ Sin conexión al ranking compartido: los puntajes quedan solo en este dispositivo. Abre el juego desde claude.ai con tu cuenta para compartirlos."};
+async function syncLocal(){try{const b=local()[0];if(!b)return;const r=db.doc("ranking/"+uid),s=await r.get();if(!s.exists||(s.data().score||0)<b.score)await r.set(b)}catch(e){}}
+(async()=>{
+  try{
+    if(!window.claude){offline();return}
+    lt=setTimeout(()=>{$("#rn").textContent="No se pudo conectar al ranking compartido todavía."},10000);
+    const [d,u]=await Promise.all([claude.use("db"),claude.use("user")]);
+    if(!d){clearTimeout(lt);offline();return}
+    db=d;if(u)uid=await u.id();
+    $("#rs").textContent=uid?"● Ranking compartido conectado: tus puntajes se ven en todos tus dispositivos y para los demás jugadores.":"○ Puedes ver el ranking, pero necesitas iniciar sesión en claude.ai para guardar tu puntaje.";
+    if(uid)syncLocal();
+    db.collection("ranking").orderBy("score","desc").limit(20).onSnapshot(s=>{clearTimeout(lt);shared=true;renderRank(s.docs.map(x=>Object.assign({id:x.id},x.data())))},()=>{clearTimeout(lt);shared=false;renderRank(local())});
+  }catch(e){clearTimeout(lt);offline()}
+})();
+
+function start(){
+  nick=$("#nick").value.trim()||"Anónimo";
+  qs=shuf(Q);i=0;score=0;right=0;show("game");ask();
+}
+function ask(){
+  const [c,q,o,a]=qs[i];locked=false;
+  $("#gp").textContent="Pregunta "+(i+1)+" de "+qs.length;
+  $("#gs").textContent=score+" pts";
+  $("#pb").style.width=(i/qs.length*100)+"%";
+  $("#gc").textContent=c;$("#gq").textContent=q;$("#fb").hidden=true;
+  const box=$("#go2");box.textContent="";
+  shuf(o.map((t,k)=>[t,k===a])).forEach(([t,ok],k)=>{
+    const b=document.createElement("button");b.className="opt";b.dataset.ok=ok?"1":"";
+    const l=document.createElement("b");l.textContent="ABCD"[k];
+    const s=document.createElement("span");s.textContent=t;
+    b.append(l,s);b.onclick=()=>pick(b);box.appendChild(b);
+  });
+  t0=Date.now();clearInterval(tm);
+  tm=setInterval(()=>{
+    const e=(Date.now()-t0)/1000;$("#tb").style.width=Math.max(0,100-e/T*100)+"%";
+    if(e>=T)pick(null);
+  },100);
+}
+function pick(b){
+  if(locked)return;locked=true;clearInterval(tm);
+  const e=(Date.now()-t0)/1000,good=!!b&&b.dataset.ok==="1";
+  let pts=0;if(good){pts=100+Math.round(Math.max(0,T-e)*5);score+=pts;right++}
+  document.querySelectorAll(".opt").forEach(x=>{
+    x.disabled=true;
+    if(x.dataset.ok){x.classList.add("ok");x.lastChild.textContent+=" ✓"}
+    else if(x===b){x.classList.add("bad");x.lastChild.textContent+=" ✗"}
+  });
+  $("#gs").textContent=score+" pts";
+  $("#ft").textContent=good?"¡Correcto! +"+pts+" puntos":(b?"No era esa.":"Se acabó el tiempo.");
+  $("#fx").textContent=qs[i][4];$("#fs").textContent="Fuente: "+qs[i][5];
+  $("#nx").textContent=i===qs.length-1?"Ver resultado":"Siguiente";
+  $("#fb").hidden=false;$("#nx").focus();
+}
+function next(){i++;i<qs.length?ask():finish()}
+async function finish(){
+  $("#pb").style.width="100%";show("end");
+  $("#es").textContent=score+" pts";
+  const t=right>=18?"Campeón o campeona nacional de cueca":right>=14?"Cuequero de pura cepa":right>=9?"Buen aficionado a la cueca":"Aprendiz de huaso";
+  $("#et").textContent=t;$("#ec").textContent="Acertaste "+right+" de "+qs.length+" preguntas.";
+  const row={nick,score,right,at:Date.now()},m=$("#em");
+  saveLocal(row);m.textContent="Guardando tu puntaje…";
+  if(!db||!uid){m.textContent="Tu puntaje quedó solo en este dispositivo. Se subirá al ranking compartido cuando abras el juego con tu cuenta de claude.ai.";if(!shared)renderRank(local());return}
+  try{
+    const r=db.doc("ranking/"+uid),s=await r.get();
+    if(!s.exists||(s.data().score||0)<score){await r.set(row);m.textContent="¡Tu puntaje entró al ranking!"}
+    else m.textContent="Tu mejor puntaje sigue siendo "+s.data().score+" pts.";
+  }catch(e){m.textContent="No pudimos guardarlo en el ranking compartido; quedó en este dispositivo."}
+}
+$("#go").onclick=start;$("#nx").onclick=next;$("#again").onclick=()=>show("start");
+$("#nick").addEventListener("keydown",e=>{if(e.key==="Enter")start()});
+document.addEventListener("keydown",e=>{
+  if($("#game").hidden||locked)return;
+  const k="1234".indexOf(e.key);if(k>-1){const o=document.querySelectorAll(".opt")[k];if(o)o.click()}
+});
+</script>
+</body>
+</html>

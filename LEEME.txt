@@ -1,0 +1,25 @@
+¿Quién sabe más de la cueca?
+============================
+Juego de preguntas sobre la cueca chilena: 20 preguntas, 4 alternativas,
+explicación y fuente en cada respuesta, puntaje por rapidez y ranking.
+
+Cómo usarlo
+- Abre index.html con doble clic en cualquier navegador.
+- Para publicarlo en un hosting, sube la carpeta completa (solo hace falta index.html).
+
+Ranking entre dispositivos
+- Esta carpeta (index.html suelto) NO puede conectar dispositivos por sí sola: guarda el
+  ranking solo en el navegador de cada persona (localStorage). Para unir resultados hace
+  falta un servidor, y un archivo HTML suelto no tiene uno.
+- La versión publicada en claude.ai sí comparte el ranking en vivo entre dispositivos:
+  https://claude.ai/artifact/5WnDxDfnZZxWuPMhZ62uLz
+  Quien juegue debe abrirla con su cuenta de claude.ai y tener permiso de "Colaborador"
+  para guardar su puntaje (con permiso de solo ver, puede mirar el ranking pero no escribir).
+- Los puntajes jugados sin conexión en un dispositivo se suben solos al ranking
+  compartido la próxima vez que abras la versión publicada con tu cuenta.
+
+Tipografía
+- Usa la fuente Fraunces desde Google Fonts. Sin internet usa Georgia.
+
+Fuentes de los datos
+- Ver FUENTES.md
